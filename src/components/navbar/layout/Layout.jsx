@@ -6,10 +6,9 @@ const Layout = ({children}) => {
   return (
     <>
     <Navbar />
-    <Search />
     {children}
     </>
   )
 }
 
-export default Layout
+export default Layout 
