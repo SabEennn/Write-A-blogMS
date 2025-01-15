@@ -1,6 +1,5 @@
 import React from "react";
-import Navbar from "../../components/navbar/Navbar";
-import Layout from "../../components/navbar/layout/Layout";
+import Layout from "../../components/layout/Layout";
 import Card from "./components/card/Card";
 
 const Home = () => {

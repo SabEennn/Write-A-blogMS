@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../Navbar'
-import Search from '../../../pages/blog/components/Search'
+import Navbar from '../navbar/Navbar'
+
 
 const Layout = ({children}) => {
   return (
@@ -11,4 +11,4 @@ const Layout = ({children}) => {
   )
 }
 
-export default Layout 
+export default Layout  
