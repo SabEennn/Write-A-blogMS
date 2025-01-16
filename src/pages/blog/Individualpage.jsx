@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
 import Button from "./components/button/Button";
+import { Link } from "react-router-dom";
 
 const Individualpage = () => {
   return (
@@ -53,18 +54,6 @@ const Individualpage = () => {
                     </p>
                   </blockquote>
                 </div>
-
-                <div className="mt-4 flex items-center">
-                  <img
-                    className="h-11 w-11 flex-shrink-0 rounded-full object-cover"
-                    src="/images/y9s3xOJV6rnQPKIrdPYJy.png"
-                    alt=""
-                  />
-                  <div className="ml-4">
-                    <p className="text-base font-bold">James Khawalski</p>
-                    <p className="mt-0.5 text-sm">CEO, Mavoline</p>
-                  </div>
-                </div>
               </div>
 
               <div className="flex flex-col bg-white">
@@ -77,20 +66,6 @@ const Individualpage = () => {
                     </p>
                   </blockquote>
                 </div>
-
-                <div className="mt-4 flex items-center">
-                  <img
-                    className="h-11 w-11 flex-shrink-0 rounded-full object-cover"
-                    src="/images/Ju6-1negUEjTnBKw_ZP4r.png"
-                    alt=""
-                  />
-                  <div className="ml-4">
-                    <p className="text-base font-bold">Jacob Jones</p>
-                    <p className="text-blue-90 mt-0.5 text-sm">
-                      Youtube Personality
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <div className="flex flex-col bg-white">
@@ -102,25 +77,14 @@ const Individualpage = () => {
                       fugiat."
                     </p>
                   </blockquote>
-                </div>
-
-                <div className="mt-4 flex items-center">
-                  <img
-                    className="h-11 w-11 flex-shrink-0 rounded-full object-cover"
-                    src="/images/fR71TFZIDTv2jhvKsOMhC.png"
-                    alt=""
-                  />
-                  <div className="ml-4">
-                    <p className="text-base font-bold">Jenny Wilson</p>
-                    <p className="text-blue-90 mt-0.5 text-sm">
-                      Esports Commentator
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
           </div>  
-          <Button type="Edit" />
+
+          <Link to="/blog/edit">
+           <Button type="Edit" />
+           </Link>
           <Button type="Delete"/>
         </div>
 
