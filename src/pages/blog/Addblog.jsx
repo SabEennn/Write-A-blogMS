@@ -6,7 +6,7 @@ import Form from "./components/form/Form";
 const Addblog = () => {
   return (
     <Layout>
-      <Form />
+      <Form type="Create"/>
     </Layout>
   );
 };

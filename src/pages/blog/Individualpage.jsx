@@ -48,9 +48,7 @@ const Individualpage = () => {
                 <div className="">
                   <blockquote className="">
                     <p className="text-lg leading-relaxed">
-                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Praesentium dolores facere repellendus, velit quis
-                      fugiat."
+                      Title
                     </p>
                   </blockquote>
                 </div>
@@ -60,9 +58,7 @@ const Individualpage = () => {
                 <div className="">
                   <blockquote className="">
                     <p className="text-lg leading-relaxed">
-                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Praesentium dolores facere repellendus, velit quis
-                      fugiat."
+                      Subtitle..
                     </p>
                   </blockquote>
                 </div>
@@ -72,9 +68,7 @@ const Individualpage = () => {
                 <div className="">
                   <blockquote className="">
                     <p className="text-lg leading-relaxed">
-                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Praesentium dolores facere repellendus, velit quis
-                      fugiat."
+                      Blog descripion here
                     </p>
                   </blockquote>
                 </div>
