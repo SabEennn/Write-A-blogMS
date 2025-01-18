@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Form = ({type}) => {
+const Form = ({ type }) => {
+
   return (
     <div className="form-wrapper flex flex-col justify-center items-center ">
-        <p className="text-3xl pt-5">{type} a blog.</p>
+      <p className="text-3xl pt-5">{type} a blog.</p>
       <form className="m-10 border-2 p-10">
         <div className="py-5">
           <h1 className="text-xl"> Title first..</h1>
