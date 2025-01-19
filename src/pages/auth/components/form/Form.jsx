@@ -15,7 +15,11 @@ const Form = ({ type }) => {
       [name]: value,
     });
   };
-  console.log(data);
+
+  const handleSubmit = () =>{
+
+  }
+
   return (
     <div className="flex min-h-screen flex-1  flex-col items-center justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -32,7 +36,7 @@ const Form = ({ type }) => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6">
+        <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
           {type === "register" && (
             <div>
               <label
@@ -98,6 +102,7 @@ const Form = ({ type }) => {
 
           <div>
             <button
+              onSubmit={handleSubmit}
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
