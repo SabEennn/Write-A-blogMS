@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ type }) => {
+const Form = ({ type, onSubmit }) => {
 
   const [data, setData] = useState({
     username: "",
@@ -15,8 +15,11 @@ const Form = ({ type }) => {
       [name]: value,
     });
   };
-
-  const handleSubmit = () =>{
+ console.log(data);
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log('handleSubmit triggered');
+    onSubmit(data)
 
   }
 
