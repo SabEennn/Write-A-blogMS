@@ -15,7 +15,7 @@ const Form = ({ type, onSubmit }) => {
       [name]: value,
     });
   };
- console.log(data);
+
   const handleSubmit = (e) =>{
     e.preventDefault()
     console.log('handleSubmit triggered');
