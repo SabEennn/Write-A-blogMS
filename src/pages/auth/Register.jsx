@@ -6,7 +6,7 @@ const Register = () => {
   const handleRegiser = async (data) => {
     try {
       const response = await axios.post(
-        "https://wwww.react30.onrender.com/api/user/register",
+        "https://react30.onrender.com/api/user/register",
         data
       );
 
