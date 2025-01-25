@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Form = ({ type, onSubmit }) => {
-
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -16,19 +16,18 @@ const Form = ({ type, onSubmit }) => {
     });
   };
 
-  const handleSubmit = (e) =>{
-    e.preventDefault()
-    console.log('handleSubmit triggered');
-    onSubmit(data)
-
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("handleSubmit triggered");
+    onSubmit(data);
+  };
 
   return (
     <div className="flex min-h-screen flex-1  flex-col items-center justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="Your Company"
-          src="src/assets/Logos/Screenshot from 2025-01-12 20-01-34.png"
+          src="/assets/Logos/logo.png"
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
@@ -39,7 +38,12 @@ const Form = ({ type, onSubmit }) => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
+        <form
+          action="#"
+          method="POST"
+          className="space-y-6"
+          onSubmit={handleSubmit}
+        >
           {type === "register" && (
             <div>
               <label
@@ -73,7 +77,6 @@ const Form = ({ type, onSubmit }) => {
                 id="email"
                 name="email"
                 type="email"
-                required
                 autoComplete="email"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 onChange={handleChange}
@@ -103,7 +106,7 @@ const Form = ({ type, onSubmit }) => {
             </div>
           </div>
 
-          <div>
+          <div className="pb-4">
             <button
               onSubmit={handleSubmit}
               type="submit"
@@ -112,6 +115,12 @@ const Form = ({ type, onSubmit }) => {
               Submit
             </button>
           </div>
+
+          {type === "login" ? (
+            <Link to="/register" style={{color:"#4f46e5"}}> Register here</Link>
+          ) : (
+            <Link to="/login" style={{color:"#4f46e5"}}>Go to Login</Link>
+          )}
         </form>
       </div>
     </div>

@@ -1,18 +1,27 @@
 import React from "react";
 import Form from "./components/form/Form";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+ 
 const Login = () => {
+  const baseurl = import.meta.env.VITE_BASE_URL
+  const navigate = useNavigate()
   const handleLogin = async (data) => {
     try {
       const result = await axios.post(
-        "https://react30.onrender.com/api/user/login",
+        `${baseurl}/login`,
         data
       );
+      console.log(result.status);
+      if(result.status >= 200 && result.status <=299){
+        navigate('/');
+      }
+      else{
+        console.log('login failed');
+      }
     }
      catch (error) {
-      console.log(error.message);
-      alert("login went unsuccessful, try again later");
+      alert(error?.response?.data?.message);
     }
   };
   return (
