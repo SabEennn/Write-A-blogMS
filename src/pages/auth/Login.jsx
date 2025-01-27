@@ -2,9 +2,9 @@ import React from "react";
 import Form from "./components/form/Form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { baseurl } from "../../config";
  
 const Login = () => {
-  const baseurl = import.meta.env.VITE_BASE_URL
   const navigate = useNavigate()
   const handleLogin = async (data) => {
     try {
