@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ type }) => {
+const Form = ({ type, onSubmit }) => {
   const [data,setData] = useState({
   title : '',
   description : ''
@@ -13,12 +13,16 @@ const Form = ({ type }) => {
       ...data,
       [name] : name === 'image' ? e.target.files[0] : value
     })
-  
+  }
+
+  const handleSubmit = (e) =>{
+      e.preventDefault()
+      onSubmit(data);
   }
   return (
     <div className="form-wrapper flex flex-col justify-center items-center ">
       <p className="text-3xl pt-5">{type} a blog.</p>
-      <form className="m-10 border-2 p-10 flex flex-col w-1/2">
+      <form className="m-10 border-2 p-10 flex flex-col w-1/2" onSubmit={handleSubmit}>
         <div className="py-5">
           <h1 className="text-xl"> Title first..</h1>
         </div>
@@ -32,6 +36,7 @@ const Form = ({ type }) => {
             id="message"
             rows="4"
             name="title"
+            onSubmit={handleChange}
             className="bg-slate-100 focus:bg-transparent focus:outline-none block p-2.5 w-full text-lg text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-none"
             placeholder="Title here..."
           ></textarea>
@@ -49,6 +54,7 @@ const Form = ({ type }) => {
               <textarea
                 id="editor"
                 rows="8"
+                onSubmit={handleChange}
                 name="description"
                 className="bg-slate-100 focus:outline-none focus:bg-transparent  w-full p-5 text-lg text-gray-800  border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                 placeholder="Write an article..."
