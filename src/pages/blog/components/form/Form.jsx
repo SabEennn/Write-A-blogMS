@@ -12,8 +12,6 @@ const Form = ({ type }) => {
     setData({
       ...data,
       [name] : name === 'image' ? e.target.files[0] : value
-
-
     })
   
   }

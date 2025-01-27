@@ -14,10 +14,8 @@ const DeleteBlogPage = ({ blogId, onDeleteSuccess }) => {
     setError(null);
 
     try {
-      // Replace '/api/blogs/' with your actual delete API endpoint
       await axios.delete(`/api/blogs/${blogId}`);
       
-      // Callback to handle success (e.g., navigate away or update state)
       if (onDeleteSuccess) {
         onDeleteSuccess();
       }

@@ -3,10 +3,14 @@ import Navbar from "../../components/navbar/Navbar";
 import Layout from "../../components/layout/Layout";
 import Form from "./components/form/Form";
 
-const Addblog = () => {
+const Addblog = (data) => {
+  const handleCreateBlog =() =>{
+
+  }
+
   return (
     <Layout>
-      <Form type="Create"/>
+      <Form type="Create" onSubmit='handleCreateBlog'/>
     </Layout>
   );
 };
