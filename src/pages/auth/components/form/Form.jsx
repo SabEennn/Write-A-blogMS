@@ -27,7 +27,7 @@ const Form = ({ type, onSubmit }) => {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <Link to="/">
         <img
-          alt="Your Company"
+          alt="Your Company"  
           src="/assets/Logos/logo.png"
           className="mx-auto h-10 w-auto"
         />

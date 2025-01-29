@@ -13,7 +13,9 @@ const Login = () => {
         data
       );
       console.log(result.status);
-      if(result.status >= 200 && result.status <=299){
+      if(result.status === 200){
+
+        localStorage.setItem('token',result.data.token)
         navigate('/');
       }
       else{
@@ -21,7 +23,8 @@ const Login = () => {
       }
     }
      catch (error) {
-      alert(error?.response?.data?.message);
+      // alert(error?.response?.data?.message);
+      console.log(error.message);
     }
   };
   return (
