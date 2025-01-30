@@ -3,7 +3,8 @@ import Form from "./components/form/Form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { baseurl } from "../../config";
- 
+import toast, { Toaster } from 'react-hot-toast';
+
 const Login = () => {
   const navigate = useNavigate()
   const handleLogin = async (data) => {
@@ -14,6 +15,7 @@ const Login = () => {
       );
       console.log(result.status);
       if(result.status === 200){
+        toast.success(result.data.message)
 
         localStorage.setItem('token',result.data.token)
         navigate('/');
@@ -23,7 +25,7 @@ const Login = () => {
       }
     }
      catch (error) {
-      // alert(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message);
       console.log(error.message);
     }
   };

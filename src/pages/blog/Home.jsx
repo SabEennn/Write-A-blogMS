@@ -5,8 +5,7 @@ import Card from "./components/card/Card";
 const Home = () => {
   return (
     <Layout>
-      <div className="flex flex-wrap" >
-        <Card />
+      <div className="flex flex-wrap">
         <Card />
         <Card />
         <Card />

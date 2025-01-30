@@ -3,28 +3,20 @@ import Form from "./components/form/Form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { baseurl } from "../../config";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const nagivate = useNavigate()
+  const nagivate = useNavigate();
   const handleRegiser = async (data) => {
     try {
-      const response = await axios.post(
-        `${baseurl}/register`,
-        data
-      );
-      if(response.status >= 201 && response.status <= 299){
-        nagivate('/login')
+      const response = await axios.post(`${baseurl}/register`, data);
+      if (response.status >= 200 && response.status <= 299) {
+        nagivate("/login");
+        toast.success(response.data.message);
       }
-      else{
-        alert('registration failed');
-      }
-
-      console.log(response.status);
     } catch (error) {
-      alert(error?.response?.data?.message);
-      // alert("failed to register, please try again later")
+      toast.error(error?.response?.data?.message);
     }
-
   };
 
   return <Form type="register" onSubmit={handleRegiser} />;
