@@ -1,29 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import Card from "./components/card/Card";
 import { baseurl } from "../../config";
+import axios from "axios";
 
 const Home = () => {
-  const [blogs, setBlogs] = useEffect([])
-  const fetchBlogs =async () =>{
-  const response =await axios.get(`${baseurl}/blogs`);
-  console.log(response);
-  }
+  const [blogs, setBlogs] = useState([]);
+  const fetchBlogs = async () => {
+    const response = await axios.get(`${baseurl}/blog`);
+    console.log(response);
+    if (response.status === 200) {
+      console.log(response.data);
+      setBlogs(response.data.data);
+    }
+  };
 
-  useEffect( ()=>{
+  useEffect(() => {
     fetchBlogs();
-  }, [])
+  }, []);
   return (
     <Layout>
       <div className="flex flex-wrap">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {
+          blogs.length > 0 && blogs.map((blog)=>{
+            return (
+            <Card />  
+          )
+          })
+        
+        }
       </div>
     </Layout>
   );
