@@ -1,9 +1,10 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
 import Button from "./components/button/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const Individualpage = () => {
+const Individualpage = ({blog}) => {
+  const { id } = useParams();
   return (
     <Layout>
       <section className="py-6 text-blue-900 sm:py-16 lg:py-20">
@@ -20,15 +21,14 @@ const Individualpage = () => {
                   <div className="">
                     <blockquote className="">
                       <p className="text-3xl font-bold text-white sm:text-5xl">
-                        "I cannot overstate how much this has helped our
-                        startup"
+                    { blog }
                       </p>
                     </blockquote>
                   </div>
 
                   <div className="mt-10 flex items-center">
                     <img
-                      className="h-11 w-11 flex-shrink-0 rounded-full object-cover"
+                      className="h-11 w-11 flex-shrink-0  rounded-full object-cover"
                       src="/images/ddHJYlQqOzyOKm4CSCY8o.png"
                       alt=""
                     />

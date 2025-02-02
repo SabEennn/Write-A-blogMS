@@ -21,14 +21,11 @@ const Home = () => {
   return (
     <Layout>
       <div className="flex flex-wrap">
-        {
-          blogs.length > 0 && blogs.map((blog)=>{
-            return (
-            <Card />  
-          )
-          })
-        
-        }
+        {blogs.length > 0 &&
+          blogs.map((blog) => {
+            console.log(blog);
+            return <Card blog={blog} />;
+          })}
       </div>
     </Layout>
   );
