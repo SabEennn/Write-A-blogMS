@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import Button from "./components/button/Button";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { baseurl } from "../../config";
 
-const Individualpage = ({blog}) => {
-  const { id } = useParams();
+const Individualpage = ({}) => {
+  const { individual } = useParams();
+  console.log(individual);
+  const [blog, setBlog] = useState({});
+  const fetchSingleBlog = async () => {
+    try { 
+      const response = await axios.get(`${baseurl}/blog/${individual}`);
+      if (response.status === 200) {  
+        setBlog(response.data.data);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  useEffect(() => {
+    fetchSingleBlog();
+  }, []);
+
   return (
     <Layout>
       <section className="py-6 text-blue-900 sm:py-16 lg:py-20">
@@ -21,7 +39,7 @@ const Individualpage = ({blog}) => {
                   <div className="">
                     <blockquote className="">
                       <p className="text-3xl font-bold text-white sm:text-5xl">
-                    { blog }
+                        {blog.id}
                       </p>
                     </blockquote>
                   </div>
@@ -47,9 +65,7 @@ const Individualpage = ({blog}) => {
               <div className="flex flex-col bg-white">
                 <div className="">
                   <blockquote className="">
-                    <p className="text-lg leading-relaxed">
-                      Title
-                    </p>
+                    <p className="text-lg leading-relaxed">Title</p>
                   </blockquote>
                 </div>
               </div>
@@ -57,9 +73,7 @@ const Individualpage = ({blog}) => {
               <div className="flex flex-col bg-white">
                 <div className="">
                   <blockquote className="">
-                    <p className="text-lg leading-relaxed">
-                      Subtitle..
-                    </p>
+                    <p className="text-lg leading-relaxed">Subtitle..</p>
                   </blockquote>
                 </div>
               </div>
@@ -74,14 +88,13 @@ const Individualpage = ({blog}) => {
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
 
           <Link to="/blog/edit">
-           <Button type="Edit" />
-           </Link>
-          <Button type="Delete"/>
+            <Button type="Edit" />
+          </Link>
+          <Button type="Delete" />
         </div>
-
       </section>
     </Layout>
   );
