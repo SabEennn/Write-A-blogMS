@@ -1,53 +1,101 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
+import Button from "./components/button/Button";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseurl } from "../../config";
 
 const Individualpage = ({}) => {
-  let { id } = useParams();
-  console.log(id);
+  const { individual } = useParams();
+  console.log(individual);
   const [blog, setBlog] = useState({});
   const fetchSingleBlog = async () => {
-    if (!id || id.length !== 24) {
-      console.error("Invalid ID:", id);
-      return;
-    }
-  
     try { 
-      const response = await axios.get(`${baseurl}/blog/${id}`);
+      const response = await axios.get(`${baseurl}/blog/${individual}`);
       if (response.status === 200) {  
         setBlog(response.data.data);
       }
     } catch (error) {
-      console.error("Error fetching blog:", error.response?.data?.message || error.message);
+      console.log(error.message);
     }
   };
-  
   useEffect(() => {
-    // fetchSingleBlog();
+    fetchSingleBlog();
   }, []);
 
   return (
     <Layout>
-      <div class="max-w-md mx-auto rounded-md overflow-hidden shadow-md hover:shadow-lg">
-    <div class="relative">
-        <img class="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Product Image"/>
-        <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">SALE
+      <section className="py-6 text-blue-900 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-screen-lg lg:px-8">
+          <div className="flex flex-col lg:flex-row">
+            <div className="relative mx-auto mb-10 flex h-96 overflow-hidden rounded-xl bg-blue-600 shadow sm:mt-20 lg:h-auto lg:max-w-md lg:pt-20">
+              <img
+                className="absolute top-0 h-full w-full object-cover opacity-10"
+                src="https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
+                alt=""
+              />
+              <div className="relative mt-auto w-full">
+                <div className="flex flex-col p-6 lg:px-7 lg:py-8">
+                  <div className="">
+                    <blockquote className="">
+                      <p className="text-3xl font-bold text-white sm:text-5xl">
+                        {blog.id}
+                      </p>
+                    </blockquote>
+                  </div>
+
+                  <div className="mt-10 flex items-center">
+                    <img
+                      className="h-11 w-11 flex-shrink-0  rounded-full object-cover"
+                      src="/images/ddHJYlQqOzyOKm4CSCY8o.png"
+                      alt=""
+                    />
+                    <div className="ml-4 text-white">
+                      <p className="text-base font-bold">Jacob Jones</p>
+                      <p className="text-blue-90 mt-0.5 text-sm">
+                        Youtube Personality
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative mx-auto grid max-w-lg grid-cols-1 gap-y-14 lg:pl-20">
+              <div className="flex flex-col bg-white">
+                <div className="">
+                  <blockquote className="">
+                    <p className="text-lg leading-relaxed">Title</p>
+                  </blockquote>
+                </div>
+              </div>
+
+              <div className="flex flex-col bg-white">
+                <div className="">
+                  <blockquote className="">
+                    <p className="text-lg leading-relaxed">Subtitle..</p>
+                  </blockquote>
+                </div>
+              </div>
+
+              <div className="flex flex-col bg-white">
+                <div className="">
+                  <blockquote className="">
+                    <p className="text-lg leading-relaxed">
+                      Blog descripion here
+                    </p>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Link to="/blog/edit">
+            <Button type="Edit" />
+          </Link>
+          <Button type="Delete" />
         </div>
-    </div>
-    <div class="p-4">
-        <h3 class="text-lg font-medium mb-2">Product Title</h3>
-        <p class="text-gray-600 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante
-            vel eros fermentum faucibus sit amet euismod lorem.</p>
-        <div class="flex items-center justify-between">
-            <span class="font-bold text-lg">$19.99</span>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-        Buy Now
-      </button>
-        </div>
-    </div>
-</div>
+      </section>
     </Layout>
   );
 };
