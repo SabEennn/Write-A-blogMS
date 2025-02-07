@@ -24,7 +24,7 @@ const Home = () => {
         {blogs.length > 0 &&
           blogs.map((blog) => {
             console.log(blog);
-            return <Card blog={blog} />;
+            return <Card key={blog._id} blog={blog} />;
           })}
       </div>
     </Layout>
