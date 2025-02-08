@@ -8,7 +8,7 @@ const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async () => {
     const response = await axios.get(`${baseurl}/blog`);
-    console.log(response);
+  
     if (response.status === 200) {
       console.log(response.data);
       setBlogs(response.data.data);

@@ -1,22 +1,44 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import Button from "./components/button/Button";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseurl } from "../../config";
 
 const Individualpage = ({}) => {
-  const { individual } = useParams();
-  console.log(individual);
+  const { id } = useParams();
+  console.log(id);
+  const navigate = useNavigate();
   const [blog, setBlog] = useState({});
+
+  const deletesingleblog = async () => {
+    try {
+      const delresponse = await axios.delete(`${baseurl}/blog/${id}`,{
+		headers:{
+			'Authorization': localStorage.getItem('token')
+		}
+	  });
+      console.log("Delete response:", delresponse);
+      if (delresponse.status === 200) {
+		navigate('/')
+       }  
+    } catch (error) {
+      console.error(
+        "Error deleting blog:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+
   const fetchSingleBlog = async () => {
-    try { 
-      const response = await axios.get(`${baseurl}/blog/${individual}`);
-      if (response.status === 200) {  
+    try {
+      const response = await axios.get(`${baseurl}/blog/${id}`);
+
+      if (response.status === 200) {
         setBlog(response.data.data);
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
   useEffect(() => {
@@ -27,64 +49,35 @@ const Individualpage = ({}) => {
     <Layout>
       <section className="py-6 text-blue-900 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-screen-lg lg:px-8">
-          <div className="flex flex-col lg:flex-row">
-            <div className="relative mx-auto mb-10 flex h-96 overflow-hidden rounded-xl bg-blue-600 shadow sm:mt-20 lg:h-auto lg:max-w-md lg:pt-20">
-              <img
-                className="absolute top-0 h-full w-full object-cover opacity-10"
-                src="https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
-                alt=""
-              />
-              <div className="relative mt-auto w-full">
-                <div className="flex flex-col p-6 lg:px-7 lg:py-8">
-                  <div className="">
-                    <blockquote className="">
-                      <p className="text-3xl font-bold text-white sm:text-5xl">
-                        {blog.id}
-                      </p>
-                    </blockquote>
-                  </div>
-
-                  <div className="mt-10 flex items-center">
+          <div class="bg-gray-100 dark:bg-gray-800 py-8">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-col md:flex-row -mx-4">
+                <div class="md:flex-1 px-4">
+                  <div class="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                     <img
-                      className="h-11 w-11 flex-shrink-0  rounded-full object-cover"
-                      src="/images/ddHJYlQqOzyOKm4CSCY8o.png"
-                      alt=""
+                      class="w-full h-full object-cover"
+                      src="https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg"
+                      alt="Product Image"
                     />
-                    <div className="ml-4 text-white">
-                      <p className="text-base font-bold">Jacob Jones</p>
-                      <p className="text-blue-90 mt-0.5 text-sm">
-                        Youtube Personality
-                      </p>
-                    </div>
                   </div>
+                 
                 </div>
-              </div>
-            </div>
-
-            <div className="relative mx-auto grid max-w-lg grid-cols-1 gap-y-14 lg:pl-20">
-              <div className="flex flex-col bg-white">
-                <div className="">
-                  <blockquote className="">
-                    <p className="text-lg leading-relaxed">Title</p>
-                  </blockquote>
-                </div>
-              </div>
-
-              <div className="flex flex-col bg-white">
-                <div className="">
-                  <blockquote className="">
-                    <p className="text-lg leading-relaxed">Subtitle..</p>
-                  </blockquote>
-                </div>
-              </div>
-
-              <div className="flex flex-col bg-white">
-                <div className="">
-                  <blockquote className="">
-                    <p className="text-lg leading-relaxed">
-                      Blog descripion here
+                <div class="md:flex-1 px-4">
+                  <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                    {blog.title}
+                  </h2>
+                  <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                    {blog.subtitle}
+                  </p>
+                 
+                  <div>
+                    <span class="font-bold text-gray-700 dark:text-gray-300">
+                      Product Description:
+                    </span>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
+						{blog.description}
                     </p>
-                  </blockquote>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,7 +86,8 @@ const Individualpage = ({}) => {
           <Link to="/blog/edit">
             <Button type="Edit" />
           </Link>
-          <Button type="Delete" />
+
+          <Button type="Delete" onClick={()=>{deletesingleblog()}} />
         </div>
       </section>
     </Layout>
