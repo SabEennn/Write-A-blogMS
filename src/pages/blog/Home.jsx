@@ -10,7 +10,6 @@ const Home = () => {
     const response = await axios.get(`${baseurl}/blog`);
   
     if (response.status === 200) {
-      console.log(response.data);
       setBlogs(response.data.data);
     }
   };

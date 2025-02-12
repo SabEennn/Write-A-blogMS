@@ -16,6 +16,7 @@ const Login = () => {
       console.log(result.status);
       if(result.status === 200){
         toast.success(result.data.message)
+        
 
         localStorage.setItem('token',result.data.token)
         navigate('/');

@@ -12,6 +12,7 @@ const Register = () => {
       const response = await axios.post(`${baseurl}/register`, data);
       if (response.status >= 200 && response.status <= 299) {
         nagivate("/login");
+        console.log(response);
         toast.success(response.data.message);
       }
     } catch (error) {
