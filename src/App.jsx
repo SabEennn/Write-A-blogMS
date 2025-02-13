@@ -8,11 +8,14 @@ import Editblog from "./pages/blog/Editblog";
 import Individualpage from "./pages/blog/Individualpage";
 import React from "react";
 import { Toaster } from "react-hot-toast";
+import {Provider} from 'react-redux'
+import store from "../store/store";
 
 function App() {
   return (
     <>
       <Toaster position="top-center"  reverseOrder={false} />
+      <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,6 +26,7 @@ function App() {
           <Route path="blog/:id" element={<Individualpage />} />
         </Routes>
       </BrowserRouter>
+      </Provider>
     </>
   );
 }
