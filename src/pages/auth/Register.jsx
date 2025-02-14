@@ -4,22 +4,26 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { baseurl } from "../../config";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { register } from "../../../store/authSlice";
 
-const Register = () => {
-  const nagivate = useNavigate();
-  const handleRegiser = async (data) => {
-    try {
-      const response = await axios.post(`${baseurl}/register`, data);
-      if (response.status >= 200 && response.status <= 299) {
-        nagivate("/login");
-        console.log(response);
-        toast.success(response.data.message);
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.message);
-    }
-  };
+const Register = (data) => {
+  const dispatch = useDispatch()
+  const handleRegister = () =>{
+  const response =  dispatch(register(data))
 
-  return <Form type="register" onSubmit={handleRegiser} />;
+ try {
+   if(response.status=== 200){
+     toast(reponse?.data?.message)
+   }
+   else{
+     toast(response?.data?.message)
+   }
+ } catch (error) {
+  toast(response?.data?.message)
+ }
+  }
+
+  return <Form type="register" onSubmit={handleRegister} />;
 };
 export default Register;
