@@ -1,33 +1,30 @@
-import React, { useState } from "react";
-import Form from "./components/form/Form";
-import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { login } from "../../../store/authSlice";
+import React, { useEffect } from 'react'
+import Form from './components/form/Form'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { login, setStatus } from '../../../store/authSlice'
+import statuses from '../../../globals/status/statuses'
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleLogin = async (data) => {
+  const {user,status} = useSelector((state)=>state.auth)
+  const navigate = useNavigate()
 
-    try {
-      const response = await dispatch(login(data));
-      if(response.status === 200){
-        toast(response?.data?.message)
-      }
-      navigate("/"); 
-    } catch (error) {
-      toast.error(error?.data?.message);
-    } 
-  };
+  const dispatch = useDispatch()
+ const handleLogin = (data)=>{
+  dispatch(login(data))
 
+ }
+
+ useEffect(()=>{
+  
+  if(status === statuses.SUCCESS){
+     navigate('/')
+     dispatch(setStatus(null))
+  }
+ },[status])
   return (
-    <>
-      <Toaster />
-      <Form type="login" onSubmit={handleLogin} disabled={loading} />
-    
-    </>
-  );
-};
+  <Form type='Login' user={user} onSubmit={handleLogin} />
+  )
+}
 
-export default Login;
+export default Login
