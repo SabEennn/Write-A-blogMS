@@ -15,14 +15,16 @@ const Register = () => {
     dispatch(register(data));
   };
 
-  useEffect(() => {     
+  useEffect(() => {
+    console.log(status);
+    
     if (status === statuses.SUCCESS) {
       navigate("/login");
       dispatch(setStatus(null));
     }
   }, [status]);
 
-  return <Form type="register" onSubmit={handleRegister} />;
+  return <Form type="Register" onSubmit={handleRegister} />;
 };
 
 export default Register;

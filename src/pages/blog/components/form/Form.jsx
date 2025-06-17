@@ -23,7 +23,7 @@ const Form = ({ type, onSubmit }) => {
   };
   return (
     <div className="form-wrapper flex flex-col justify-center items-center ">
-      <p className="text-3xl pt-5">{type} the blog.</p>
+      <p className="text-3xl pt-5">{type} a blog.</p>
       <form
         className="m-10 border-2 p-10 flex flex-col w-1/2"
         onSubmit={handleSubmit}
@@ -36,10 +36,10 @@ const Form = ({ type, onSubmit }) => {
           <div className="title-wrapper">
             <label
               for="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             ></label>
             <textarea
-            
+              id="message"
               rows="4"
               name="title"
               required
@@ -57,7 +57,7 @@ const Form = ({ type, onSubmit }) => {
           <div className="title-wrapper">
             <label
               for="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             ></label>
             <textarea
               id="message"
@@ -78,7 +78,7 @@ const Form = ({ type, onSubmit }) => {
           <div className="title-wrapper">
             <label
               for="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             ></label>
             <textarea
               id="message"
