@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '../blog/components/form/Form'; // Adjust the path if Form is in a different folder
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import { baseurl } from '../../config';
 
 const Addblog = () => {
@@ -11,13 +12,14 @@ const Addblog = () => {
     try {
       const response = await axios.post(`${baseurl}/blog`, data, {
         headers: {
-          'Authorization': localStorage.getItem('token'),
+          'Authorization': localStorage.getItem('jwt'),
           'Content-Type': 'application/json',
         },
       });
 
       if (response.status === 200 || response.status === 201) {
         console.log('Blog submitted successfully:', response.data);
+        toast.success('blog created successfully')
         navigate('/'); // Redirect to homepage or blog list
       }
     } catch (error) {
@@ -31,4 +33,3 @@ const Addblog = () => {
 };
 
 export default Addblog;
-    
