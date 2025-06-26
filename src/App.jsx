@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import store from "../store/store";
 import Protected from "./Protected";
 
-// Lazy load all page components
 const Home = lazy(() => import("./pages/blog/Home"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const Addblog = lazy(() => import("./pages/blog/Addblog"));
@@ -13,10 +12,10 @@ const Login = lazy(() => import("./pages/auth/Login"));
 const Editblog = lazy(() => import("./pages/blog/Editblog"));
 const Individualpage = lazy(() => import("./pages/blog/Individualpage"));
 
-// Loading component
+
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500">There's a error on the page</div>
   </div>
 );
 

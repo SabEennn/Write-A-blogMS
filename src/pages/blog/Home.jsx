@@ -3,11 +3,13 @@ import Layout from "../../components/layout/Layout";
 import Card from "./components/card/Card";
 import { baseurl } from "../../config";
 import axios from "axios";
+import Navbar from "../../components/navbar/Navbar";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchBlogs = async () => {
     try {
@@ -17,7 +19,7 @@ const Home = () => {
         setBlogs(response.data.data);
       }
     } catch (err) {
-      setError(err.message || 'Failed to fetch blogs');
+      setError(err.message || "Failed to fetch blogs");
     } finally {
       setLoading(false);
     }
@@ -26,6 +28,11 @@ const Home = () => {
   useEffect(() => {
     fetchBlogs();
   }, []);
+
+  // Filter blogs by search query
+  const filteredBlogs = blogs.filter((blog) =>
+    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (loading) {
     return (
@@ -40,27 +47,26 @@ const Home = () => {
   if (error) {
     return (
       <Layout>
-        <div className="text-red-500 text-center p-4">
-          {error}
-        </div>
+        <div className="text-red-500 text-center p-4">{error}</div>
       </Layout>
     );
   }
 
   return (
-    <Layout>
-      <div className="flex flex-wrap">
-        {blogs.length > 0 ? (
-          blogs.map((blog) => (
-            <Card key={blog._id} blog={blog} />
-          ))
-        ) : (
-          <div className="w-full text-center p-4">
-            No blogs found
-          </div>
-        )}
-      </div>
-    </Layout>
+    <>
+      {/* Pass search state to Navbar */}
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
+      <Layout>
+        <div className="flex flex-wrap">
+          {filteredBlogs.length > 0 ? (
+            filteredBlogs.map((blog) => <Card key={blog._id} blog={{...blog , searchQuery}} />)
+          ) : (
+            <div className="w-full h-[80vh] flex justify-center items-center p-4">No blogs found</div>
+          )}
+        </div>
+      </Layout>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { register, setStatus } from "../../../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import statuses from "../../../globals/status/statuses";
+import toast from "react-hot-toast";
 
 
 const Register = () => {
@@ -21,10 +22,12 @@ const Register = () => {
     if (status === statuses.SUCCESS) {
       navigate("/login");
       dispatch(setStatus(null));
+      toast.success('Registration Successfull')
+
     }
   }, [status]);
 
-  return <Form type="Register" onSubmit={handleRegister} />;
+  return <Form type="register" onSubmit={handleRegister} />;
 };
 
 export default Register;

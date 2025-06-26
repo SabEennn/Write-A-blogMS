@@ -4,6 +4,7 @@ import Button from "./components/button/Button";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseurl } from "../../config";
+import Navbar from "../../components/navbar/Navbar";
 
 const Individualpage = ({}) => {
   const { id } = useParams();
@@ -95,7 +96,8 @@ const Individualpage = ({}) => {
 
   return (
     <Layout>
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Navbar />    
+        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back navigation */}
         <div className="mb-8">
           <Link 

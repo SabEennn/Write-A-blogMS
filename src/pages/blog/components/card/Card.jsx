@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Highlighter from "react-highlight-words";
 
 const Card = ({ blog }) => {
   return (
     <div className="w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-sm xl:max-w-md">
-      <Link 
+      <Link
         to={`/blog/${blog._id}`}
         className="block bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700 m-2 sm:m-4 overflow-hidden"
       >
@@ -15,16 +16,25 @@ const Card = ({ blog }) => {
             alt="Blog post image"
           />
         </div>
-        
+
         <div className="p-4 sm:p-5">
           <h5 className="mb-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-2">
-            {blog.title}
+            <Highlighter
+              highlightClassName="bg-yellow-300 px-1 rounded"
+              searchWords={[blog.searchQuery || ""]}
+              autoEscape={true}
+              textToHighlight={blog.title}
+            />
           </h5>
-          
+
           <p className="mb-3 text-sm sm:text-base font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
-            {blog.subtitle}
+            <Highlighter
+              highlightClassName="bg-yellow-200 px-1 rounded"
+              searchWords={[blog.searchQuery || ""]}
+              autoEscape={true}
+              textToHighlight={blog.subtitle}
+            />
           </p>
-          
           <div className="inline-flex items-center px-3 py-2 text-xs sm:text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-colors duration-200">
             Read More
             <svg
